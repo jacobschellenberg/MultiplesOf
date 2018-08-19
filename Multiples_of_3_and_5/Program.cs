@@ -1,40 +1,46 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 
-namespace Multiples_of_3_and_5
+namespace MultiplesOf
 {
+	/* 
+	If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9. 
+	The sum of these multiples is 23.
+	Find the sum of all the multiples of 3 or 5 below 1000.
+	*/
 
-	/// <summary>
-	/// If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9. 
-	/// The sum of these multiples is 23.
-	/// Find the sum of all the multiples of 3 or 5 below 1000.
-	/// </summary>
-	class MainClass
+	public class Program
 	{
-		public static void Main (string[] args)
+		private static int maxNaturalNumber = 10;
+		private static int multipleOf01 = 3;
+		private static int multipleOf02 = 5;
+		
+		public static void Main ()
 		{
-			int max = 10;
-			int sum = 0;
-			int multipleOf3 = 0;
-			int multipleOf5 = 0;
+			var sumOf01 = GetSumOfMultiplesOf(maxNaturalNumber, multipleOf: multipleOf01);
+			var sumOf02 = GetSumOfMultiplesOf(maxNaturalNumber, multipleOf: multipleOf02);
+			var sumOfMultiples = sumOf01 + sumOf02;
 
-			for (int i = 0; i < max; i++) {
-				multipleOf3 = i * 3;
-				multipleOf5 = i * 5;
+			Console.WriteLine("Sum of {0}s and {1}s: {2}", multipleOf01, multipleOf02, sumOfMultiples);
+		}
 
-				if (multipleOf3 < max && multipleOf3 > 0) {
-					sum += multipleOf3;
-					Console.WriteLine ("Multiple of 3: " + multipleOf3);
-				}
+		private static int GetSumOfMultiplesOf(int maxNaturalNumber, int multipleOf)
+		{
+			var sum = 0;
 
-				if (multipleOf5 < max && multipleOf5 > 0) {
-					sum += multipleOf5;
-					Console.WriteLine ("Multiple of 5: " + multipleOf5);
+			for (var i = 0; i < maxNaturalNumber; i++) 
+			{
+				var multiple = i * multipleOf;
+
+				if (multiple < maxNaturalNumber && multiple > 0) 
+				{
+					sum += multiple;
+					Console.WriteLine("Multiple of " + multipleOf + ": " + multiple);
 				}
 			}
+			
+			Console.WriteLine ("Sum of multiples of " + multipleOf + ": " + sum);
 
-			Console.WriteLine ("Sum: " + sum);
+			return sum;
 		}
 	}
 }
